@@ -89,8 +89,8 @@
 .everypayform__standalone_wrapper select{}
 
 #select_everypay_saved_card select{
-    width:200px;
-}
+    width:auto;
+} 
 
 .submit-everypay {
     display: inline-block;

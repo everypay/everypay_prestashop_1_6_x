@@ -547,7 +547,8 @@ $table2 = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'everypay_tokens` (
         $sql = 'SELECT * FROM '
                 . _DB_PREFIX_ . 'everypay_customers
             WHERE id_customer_token=' . (int) ($cus_id) . ' AND
-                id_customer = ' . (int) $cart->id_customer . '';
+                id_customer = ' . (int) $cart->id_customer
+                . ' AND active=1';
         //echo $sql;
         $results = Db::getInstance()->getRow($sql);
 
@@ -956,30 +957,33 @@ LEFT JOIN ' . _DB_PREFIX_ . 'everypay_customers ON '
         $sql = 'SELECT * FROM '
                 . _DB_PREFIX_ . 'everypay_customers
             WHERE id_customer = ' . (int) $cart->id_customer . '
-                AND card_has_expired = 0
+                AND card_has_expired IN (0,1)
                 AND active = 1';
 
         $results = Db::getInstance()->ExecuteS($sql);
 
         if (empty($results))
-            return null;
+            return array('valid' => array(), 'expired' => array());
 
-        $filtered_results = array();
-        $these_have_expired = array();
+        $filtered_results =
+        $these_have_expired =
+        $delete_ids = array();
+
         foreach ($results as $card) {
             $card['exp_month'] = str_pad($card['exp_month'],2, '0', STR_PAD_LEFT);
             $expiry_date = strtotime($card['exp_year'] . '-' . $card['exp_month'] . '-01');
             $now = strtotime(date('Y') . '-' . (int) date('m') . '-01');
 
             if ($expiry_date < $now) {
-                $these_have_expired[] = $card['id_customer_token'];
+                $delete_ids[] = $card['id_customer_token'];
+                $these_have_expired[] = $card;
             } else {
                 $filtered_results[] = $card;
             }
         }
 
-        if (!empty($these_have_expired)) {
-            $where = 'id_customer_token IN (' . implode(',', $these_have_expired) . ')';
+        if (!empty($delete_ids)) {
+            $where = 'id_customer_token IN (' . implode(',', $delete_ids) . ')';
 
             $data = array(
                 'card_has_expired' => 1
@@ -988,10 +992,7 @@ LEFT JOIN ' . _DB_PREFIX_ . 'everypay_customers ON '
             $update = Db::getInstance()->update('everypay_customers', $data, $where);
         }
 
-        if (empty($filtered_results)) {
-            return null;
-        }
-        return $filtered_results;
+        return array('valid' => $filtered_results, 'expired' => $these_have_expired);
     }
 
     private function _findCustomerCardById($id_customer_token) {
@@ -1006,9 +1007,9 @@ LEFT JOIN ' . _DB_PREFIX_ . 'everypay_customers ON '
         $sql = 'SELECT * FROM '
                 . _DB_PREFIX_ . 'everypay_customers
             WHERE id_customer = ' . (int) $cart->id_customer . '
-                AND card_has_expired = 0
+                AND card_has_expired IN (0, 1)
                 AND active = 1
-                AND Id_customer_token=' . (int) $id_customer_token;
+                AND id_customer_token=' . (int) $id_customer_token;
 
         $results = Db::getInstance()->ExecuteS($sql);
 
@@ -1136,7 +1137,7 @@ LEFT JOIN ' . _DB_PREFIX_ . 'everypay_customers ON '
         $this->_processDeleteCard();
 
         $data = array(
-            'cards' => $this->_getCustomerCards(),
+            'EVERYPAY_CARDS' => $this->_getCustomerCards(),
             'form_action' => $this->context->link->getModuleLink($this->name, 'account', array(), true)
         );
 
@@ -1478,7 +1479,6 @@ LEFT JOIN ' . _DB_PREFIX_ . 'everypay_customers ON '
         }
 
         $assign = array(
-            'creditCards' => $this->_getCustomerCards(),
             'in_footer' => $in_footer
         );
         Context::getContext()->smarty->assign($assign);

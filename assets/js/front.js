@@ -51,9 +51,10 @@ function bindEverypayForm(){
     
     //$('.everypay_cardway_selection #select_saved_card').trigger('click');
     
-    $('.submit_saved_card').bind('click', function(){
+    $('#select_everypay_saved_card').bind('submit', function(){
        $('.everypay_selection_wrapper_saved_card .loading-everypay').show();
        $('.everypay_cardway_selection').remove();
+       $(this).hide();       
     });    
     
     $('.everypay_customer_cards_container input[type="submit"]').bind('click', function() {

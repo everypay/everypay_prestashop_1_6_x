@@ -43,11 +43,13 @@ $_MODULE['<{everypaypayments}prestashop>accountpage_5735196b42849ae4fe6adac3ae14
 $_MODULE['<{everypaypayments}prestashop>accountpage_f9b419a669ba393956a3e75aca87ed83'] = 'Στοιχεία κάρτας';
 $_MODULE['<{everypaypayments}prestashop>accountpage_85bf78b2a86ca17865a4ebfd65ad9e0a'] = 'Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή την κάρτα;';
 $_MODULE['<{everypaypayments}prestashop>accountpage_1063e38cb53d94d386f21227fcd84717'] = 'Διαγραφή';
+$_MODULE['<{everypaypayments}prestashop>accountpage_24fe48030f7d3097d5882535b04c3fa8'] = 'Έληξε';
 $_MODULE['<{everypaypayments}prestashop>accountpage_83cea9f73e04398567705f5ffcb16573'] = 'Δεν βρέθηκαν αποθηκευμένες κάρτες';
 $_MODULE['<{everypaypayments}prestashop>accountpage_5b4ca65b34e723ffd9b9862fbcfeccc4'] = 'Δεν έχουν αποθηκευτεί κάρτες στο λογαριασμό σας. Θα σας ζητηθεί να αποθηκεύσετε κάποια κάρτα κατά τη διαδικασία μιας παραγγελίας (επιλέξτε την επιλογή \"Αποθήκευση κάρτας\").';
 $_MODULE['<{everypaypayments}prestashop>accountpage_0b3db27bc15f682e92ff250ebb167d4b'] = 'Επιστροφή στο λογαριασμό μου';
 $_MODULE['<{everypaypayments}prestashop>card_selection_0826376c872f4d5bcf213ca8858f2b33'] = 'Επιλέξτε κάρτα';
 $_MODULE['<{everypaypayments}prestashop>card_selection_a0bfb8e59e6c13fc8d990781f77694fe'] = 'Συνέχεια';
+$_MODULE['<{everypaypayments}prestashop>card_selection_912178bf1265531675bc2c9412deb2ce'] = 'Όλες οι αποθηκευμένες κάρτες σας έχουν λήξει! Παρακαλούμε χρησιμοποιήστε μία καινούργια.';
 $_MODULE['<{everypaypayments}prestashop>confirm_51336c7c5bcf4642df3fbbd9bf369a95'] = 'Πληρωμή με κάρτα (μέσω Everypay)';
 $_MODULE['<{everypaypayments}prestashop>confirm_a60f1ae8caa25c6b0d2a43c406751fdc'] = 'Ολοκλήρωση παραγγελίας';
 $_MODULE['<{everypaypayments}prestashop>confirm_c884ed19483d45970c5bf23a681e2dd2'] = 'Σύνοψη παραγγελίας';

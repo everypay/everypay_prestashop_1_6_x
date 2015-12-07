@@ -8,9 +8,14 @@
             </a>
         </p>
     </div> 
+                
+    {assign var="valid" value=$EVERYPAY_CARDS.valid}
+    {assign var="expired" value=$EVERYPAY_CARDS.expired}
+    {assign var="cards" value=$valid|array_merge:$expired}
+            
     <div class="col-xs-12 everypay-option-select">
         <div>
-            {if $EVERYPAY_CUSTOMER_MODE && !is_null($EVERYPAY_CARDS) && $EVERYPAY_CARDS|count>0 && !$isGuest}
+            {if $EVERYPAY_CUSTOMER_MODE && $cards|count>0 && !$isGuest}
                 <div class="everypay_cardway_selection">
                     <label>{l s='You can pay with a' mod='everypaypayments'}:</label>
                     <label for="select_saved_card">
@@ -25,8 +30,7 @@
                     {$EVERYPAY_CARD_SELECTION}
                 </div>
             {/if}
-            <div class="everypay_selection_wrapper_new_card" {if $EVERYPAY_CUSTOMER_MODE && !is_null($EVERYPAY_CARDS) && $EVERYPAY_CARDS|count>0 && !$isGuest}style="display:none"{/if}>
-
+            <div class="everypay_selection_wrapper_new_card" {if $EVERYPAY_CUSTOMER_MODE && $cards|count>0 && !$isGuest}style="display:none"{/if}>
                 <p class="loading-everypay" style="display:none;text-align:center">
                     {l s='Loading please wait' mod='everypaypayments'}...<br /><br />
                     <img height="19px" alt="Loading please wait" src="{$module_template_dir}assets/images/loading-ajax.GIF">
@@ -39,8 +43,10 @@
                         <!--<div class="form-error" style="display:none"></div>-->
                         {if ($EVERYPAY_CUSTOMER_MODE && !$isGuest)}           
                             <p style="text-align: left">
-                                <input id="remember_ev_card" type="checkbox" name="remember_card" />
-                                <label for="remember_ev_card">{l s='Save this card for use in the future?' mod='everypaypayments'}
+                                
+                                <label for="remember_ev_card">
+                                    <input id="remember_ev_card" type="checkbox" name="remember_card" />
+                                    {l s='Save this card for use in the future?' mod='everypaypayments'}
                                     <br />
                                     <small>{l s='Your card details don\'t get really stored. A unique token gets saved instead.' mod='everypaypayments'}</small>
                                 </label>

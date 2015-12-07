@@ -4,9 +4,13 @@
     <span class="navigation-pipe">{$navigationPipe}</span>{l s='My credit/debit cards' mod='everypaypayments'}
 {/capture}
 
+{assign var="valid" value=$EVERYPAY_CARDS.valid}
+{assign var="expired" value=$EVERYPAY_CARDS.expired}
+{assign var="cards" value=$valid|array_merge:$expired}
+
 <div id="everypay_confirmation_wrapper" class="everypay_customer_cards_container">
     <h1>{l s='My credit/debit cards' mod='everypaypayments'}</h1>
-    {if $cards}
+    {if $cards|count > 0 }
         <p> {l s='Here you can review your stored Credit/Debit cards.' mod='everypaypayments'}
             <br /><br />
             {l s='Note that your sensitive card data are not really stored in our store. Instead a unique token is created so that your future transactions use this.' mod='everypaypayments'}
@@ -21,7 +25,7 @@
 
             </thead>
             <tbody>
-                {foreach from=$cards item=card}
+                {foreach from=$valid item=card}
                     <tr>
                         <td>
                             <img src="/modules/everypaypayments/assets/images/icon-{$card['card_type']|strtolower}.gif" />
@@ -36,23 +40,33 @@
                         </td>
                     </tr>
                 {/foreach}
+                {foreach from=$expired item=card}
+                    <tr>
+                        <td>
+                            <img src="/modules/everypaypayments/assets/images/icon-{$card['card_type']|strtolower}.gif" />
+                            {$card['card_type']}
+                        </td>
+                        <td>[•••• {$card['card_last_four']}] ({$card['exp_month']}/{$card['exp_year']}) - {l s='Expired' mod='everypaypayments'}</td>
+                        <td style="color:#444">                            
+                            <form action="{$form_action}" method="POST">                                
+                                <input type="submit" name="deleteCard" onClick="return confirm('{l s='Are you sure you want to delete this card?' mod='everypaypayments'}')" class="button" value="{l s='Remove' mod='everypaypayments'}">
+                                <input type="hidden" name="card" value="{$card['id_customer_token']}" />
+                            </form>
+                        </td>
+                    </tr>
+                {/foreach}
             </tbody>
         </table>
-    {else}   
-
-        {if $msg}
-            <p class="warning">
-                <font style="font-size:15px; font-weight:bold;">{$msg}</font>
-            </p>
-        {/if}
-
-        <p class="warning">{l s='No stored cards have been found' mod='everypaypayments'}</p>
-
+    {else}
+        <div class="alert alert-warning">
+            <p class="warning">{l s='No stored cards have been found' mod='everypaypayments'}</p>
+        </div>
         <p>
             {l s='No credit/debit card has been stored in your account yet. You will be offered to save your card upon your first order that is paid with credit/debit card (check the "save card" option).' mod='everypaypayments'}                
             <br/><br/>
             {l s='Note that your sensitive card data are not really stored in our store. Instead a unique token is created so that your future transactions use this.' mod='everypaypayments'}
         </p>
+        
     {/if}
 
     <ul class="footer_links clearfix">
