@@ -1460,14 +1460,6 @@ LEFT JOIN ' . _DB_PREFIX_ . 'everypay_customers ON '
     }
 
     public function hookBackOfficeHeader() {
-        /*if (Tools::getValue('module_name') == $this->name) {
-            $this->context->controller->addJquery();
-            $this->context->controller->addJQueryPlugin('fancybox');
-            $this->context->controller->addCSS(_MODULE_DIR_ . $this->name . '/assets/css/admin.css');
-            $this->context->controller->addJS(_MODULE_DIR_ . $this->name . '/assets/js/admin.js');
-
-            return true;
-        }*/
         return null;
     }
 

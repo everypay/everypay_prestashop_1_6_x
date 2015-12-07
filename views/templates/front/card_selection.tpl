@@ -5,7 +5,7 @@
             <span>{l s='Select a saved card' mod='everypaypayments'}:</span> 
             <select name="cus_id" id="cust_ids">
                 {foreach from=$EVERYPAY_CARDS key=k item=v}
-                    <option value="{$v['id_customer_token']}">{$v['card_type']}...............{$v['card_last_four']}</option>
+                    <option value="{$v['id_customer_token']}">{$v['card_type']} •••• {$v['card_last_four'] ({$card['exp_month']}/{$card['exp_year']})}</option>
                 {/foreach}
             </select>
         </p>

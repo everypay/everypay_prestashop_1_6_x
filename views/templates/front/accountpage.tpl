@@ -1,10 +1,10 @@
-{capture name=path}
-    <a href="{$link->getPageLink('my-account', true)|escape:'htmlall':'UTF-8'}">
-        {l s='My account' mod='everypaypayments'}</a>
-    <span class="navigation-pipe">{$navigationPipe}</span>{l s='My credit/debit cards' mod='everypaypayments'}
-{/capture}
+{*capture name=path}
+<a href="{$link->getPageLink('my-account', true)|escape:'htmlall':'UTF-8'}">
+{l s='My account' mod='everypaypayments'}</a>
+<span class="navigation-pipe">{$navigationPipe}</span>{l s='My credit/debit cards' mod='everypaypayments'}
+{/capture*}
 
-{include file="$tpl_dir./breadcrumb.tpl"}
+{*include file="$tpl_dir./breadcrumb.tpl"*}
 
 <div id="everypay_confirmation_wrapper" class="everypay_customer_cards_container">
     <h1>{l s='My credit/debit cards' mod='everypaypayments'}</h1>
@@ -19,7 +19,6 @@
         <table class="std" id="order-list">
             <thead>
                 <tr>
-
                     <th></th>
                     <th>{l s='Card type' mod='everypaypayments'}</th>
                     <th>{l s='Last four digits' mod='everypaypayments'}</th>
@@ -30,9 +29,9 @@
             <tbody>
                 {foreach from=$cards item=card}
                     <tr>
-                        <td style="text-align:center"><img src="/modules/{$moduleName}/assets/images/icon-{$card['card_type']|strtolower}.gif" /></td>
+                        <td style="text-align:center"><img src="/modules/everypaypayments/assets/images/icon-{$card['card_type']|strtolower}.gif" /></td>
                         <td>{$card['card_type']}</td>
-                        <td>{$card['card_last_four']}</td>
+                        <td>{$card['card_last_four']} ({$card['exp_month']}/{$card['exp_year']})</td>
                         <td>
                             <form action="{$form_action}" method="POST">
                                 <input type="submit" name="deleteCard" class="button" value="{l s='Remove' mod='everypaypayments'}">
@@ -60,9 +59,8 @@
         </p>
     {/if}
 
-    <ul class="footer_links">
-        <li class="fleft">
-            <a href="{$link->getPageLink('my-account', true)|escape:'htmlall':'UTF-8'}"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon" />{l s='Back to Your Account' mod='everypaypayments'}</a>
-        </li>
+    <ul class="footer_links clearfix">
+        <li><a title="{l s='Back to Your Account' mod='everypaypayments'}" href="{$link->getPageLink('my-account', true)|escape:'htmlall':'UTF-8'}" class="btn btn-default button button-small"><span><i class="icon-chevron-left"></i> {l s='Back to Your Account' mod='everypaypayments'}</span></a></li>
     </ul>
+
 </div>
