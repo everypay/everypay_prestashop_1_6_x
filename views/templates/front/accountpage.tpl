@@ -1,11 +1,3 @@
-{*capture name=path}
-<a href="{$link->getPageLink('my-account', true)|escape:'htmlall':'UTF-8'}">
-{l s='My account' mod='everypaypayments'}</a>
-<span class="navigation-pipe">{$navigationPipe}</span>{l s='My credit/debit cards' mod='everypaypayments'}
-{/capture*}
-
-{*include file="$tpl_dir./breadcrumb.tpl"*}
-
 <div id="everypay_confirmation_wrapper" class="everypay_customer_cards_container">
     <h1>{l s='My credit/debit cards' mod='everypaypayments'}</h1>
     {if $cards}
