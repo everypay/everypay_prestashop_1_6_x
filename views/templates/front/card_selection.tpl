@@ -2,9 +2,9 @@
     <form action="{$EVERYPAY_FORM_ACTION}" id="select_everypay_saved_card" method="POST">
         <p class="select" style="float:left">
             <span>{l s='Select a saved card' mod='everypaypayments'}:</span> 
-            <select name="cus_id" id="cust_ids">
+            <select name="cus_id" id="cust_ids" style="font-family:Monospace">
                 {foreach from=$EVERYPAY_CARDS key=k item=v}
-                    <option value="{$v['id_customer_token']}">{$v['card_type']} •••• {$v['card_last_four']} ({$v['exp_month']}/{$v['exp_year']})}</option>
+                    <option value="{$v['id_customer_token']}">{$v['card_type']} •••• {$v['card_last_four']} ({$v['exp_month']}/{$v['exp_year']})</option>
                 {/foreach}
             </select>
         </p>

@@ -40,7 +40,8 @@ $_MODULE['<{everypaypayments}prestashop>accountpage_05056917681544430c39c61416b2
 $_MODULE['<{everypaypayments}prestashop>accountpage_53c54c64d79564a0fa08ed33cc1204f7'] = 'Εδώ μπορείτε να δείτε τις αποθηκευμένες κάρτες σας.';
 $_MODULE['<{everypaypayments}prestashop>accountpage_60c52b612155f55f64b9303acc4c2e43'] = 'Σημείωση: Τα στοιχεία των καρτών δεν αποθηκεύονται πραγματικά στο e-shop μας. Αντ\'αυτού αποθηκεύεται ένας μοναδικός κωδικός για κάθε κάρτα';
 $_MODULE['<{everypaypayments}prestashop>accountpage_5735196b42849ae4fe6adac3ae14c3d1'] = 'Τύπος κάρτας';
-$_MODULE['<{everypaypayments}prestashop>accountpage_186e9e468c3a7f25624a6c9e2e3789bf'] = 'Τελευταία 4 ψηφία';
+$_MODULE['<{everypaypayments}prestashop>accountpage_f9b419a669ba393956a3e75aca87ed83'] = 'Στοιχεία κάρτας';
+$_MODULE['<{everypaypayments}prestashop>accountpage_85bf78b2a86ca17865a4ebfd65ad9e0a'] = 'Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή την κάρτα;';
 $_MODULE['<{everypaypayments}prestashop>accountpage_1063e38cb53d94d386f21227fcd84717'] = 'Διαγραφή';
 $_MODULE['<{everypaypayments}prestashop>accountpage_83cea9f73e04398567705f5ffcb16573'] = 'Δεν βρέθηκαν αποθηκευμένες κάρτες';
 $_MODULE['<{everypaypayments}prestashop>accountpage_5b4ca65b34e723ffd9b9862fbcfeccc4'] = 'Δεν έχουν αποθηκευτεί κάρτες στο λογαριασμό σας. Θα σας ζητηθεί να αποθηκεύσετε κάποια κάρτα κατά τη διαδικασία μιας παραγγελίας (επιλέξτε την επιλογή \"Αποθήκευση κάρτας\").';

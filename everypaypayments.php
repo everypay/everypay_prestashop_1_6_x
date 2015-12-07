@@ -967,6 +967,7 @@ LEFT JOIN ' . _DB_PREFIX_ . 'everypay_customers ON '
         $filtered_results = array();
         $these_have_expired = array();
         foreach ($results as $card) {
+            $card['exp_month'] = str_pad($card['exp_month'],2, '0', STR_PAD_LEFT);
             $expiry_date = strtotime($card['exp_year'] . '-' . $card['exp_month'] . '-01');
             $now = strtotime(date('Y') . '-' . (int) date('m') . '-01');
 
@@ -1043,7 +1044,7 @@ LEFT JOIN ' . _DB_PREFIX_ . 'everypay_customers ON '
      *
      * @return null
      */
-    private function _proccessDeleteCard() {
+    private function _processDeleteCard() {
         if (Tools::isSubmit('deleteCard') && Tools::getValue('card')) {
 
             if (!$this->_findCustomerCardById(Tools::getValue('card'))) {
@@ -1132,7 +1133,7 @@ LEFT JOIN ' . _DB_PREFIX_ . 'everypay_customers ON '
             Tools::redirect($redirectLocation);
         }
 
-        $this->_proccessDeleteCard();
+        $this->_processDeleteCard();
 
         $data = array(
             'cards' => $this->_getCustomerCards(),
