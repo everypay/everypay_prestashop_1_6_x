@@ -1,5 +1,9 @@
 {assign var="cards" value=$EVERYPAY_CARDS.valid}
 {assign var="expired" value=$EVERYPAY_CARDS.expired}
+{assign var="cards" value=NULL}
+{if $valid|count>0 || $expired|count>0}
+    {assign var="cards" value=$valid|@array_merge:$expired}
+{/if}
 
 {if $cards|count>0}
     <form action="{$EVERYPAY_FORM_ACTION}" id="select_everypay_saved_card" method="POST">

@@ -6,7 +6,10 @@
 
 {assign var="valid" value=$EVERYPAY_CARDS.valid}
 {assign var="expired" value=$EVERYPAY_CARDS.expired}
-{assign var="cards" value=$valid|array_merge:$expired}
+{assign var="cards" value=NULL}
+{if $valid|count>0 || $expired|count>0}
+    {assign var="cards" value=$valid|@array_merge:$expired}
+{/if}
 
 <div id="everypay_confirmation_wrapper" class="everypay_customer_cards_container">
     <h1>{l s='My credit/debit cards' mod='everypaypayments'}</h1>

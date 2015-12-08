@@ -11,8 +11,10 @@
                 
     {assign var="valid" value=$EVERYPAY_CARDS.valid}
     {assign var="expired" value=$EVERYPAY_CARDS.expired}
-    {assign var="cards" value=$valid|array_merge:$expired}
-            
+    {assign var="cards" value=NULL}
+    {if $valid|count>0 || $expired|count>0}
+        {assign var="cards" value=$valid|@array_merge:$expired}
+    {/if}     
     <div class="col-xs-12 everypay-option-select">
         <div>
             {if $EVERYPAY_CUSTOMER_MODE && $cards|count>0 && !$isGuest}
