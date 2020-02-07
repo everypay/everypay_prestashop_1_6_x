@@ -4,9 +4,8 @@ everypay-prestashop-1.6.x
 Installation instructions
 
 1. Download Zip
-2. Rename folder everypay_prestashop_1_6_x-master to everypay_prestashop_1_6_x (inside everypay_prestashop_1_6_x-master.zip). Rename folder everypay_prestashop_1_6_x-master to everypaypayments (inside everypay_prestashop_1_6_x-master.zip)
-3. Upload folder everypay_prestashop_1_6_x to /modules directory of Prestashop or Upload the whole zip through the Admin Panel of Prestashop
-Upload folder everypaypayments  to /modules directory of Prestashop or Upload the whole zip through the Admin Panel of Prestashop
+2. Rename folder everypay_prestashop_1_6_x-master to everypaypayments
+3. Upload folder everypaypayments to /modules directory
 4. Install through modules tab of Admin Panel
 5. Fill your account details in the module options
 
